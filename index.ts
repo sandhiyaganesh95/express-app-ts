@@ -4,7 +4,7 @@ dotenv.config();
 import mongoose from 'mongoose';
 import config from "./config";
 import UserRoute from './src/routes/user';
-
+import bodyParser from 'body-parser';
 //Connect to database
 mongoose.connect(config.MONGO_URL).then(() => {
   console.log("Successfully connected to the database");
@@ -15,6 +15,10 @@ mongoose.connect(config.MONGO_URL).then(() => {
 
 //Create server
 const app: Express = express();
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.get('/',(req: Request, res: Response) => {
   res.send('Express + Mongo CRUD with Typescript');
 });
