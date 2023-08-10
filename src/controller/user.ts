@@ -5,6 +5,7 @@ class UserController{
   async create(req: Request, res: Response) {
     try {
       const user = await UserModel.create(req.body);
+      console.log(user);
       res.send({
         message: 'User created successfully',
         user: user
